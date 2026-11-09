@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تحدي HTML</title>
+<style>
+:root{--bg:#fdf6f1;--card:#fff;--tx:#1f2a44;--mut:#6b7385;--ac:#c2410c;--ok:#15803d;--okb:#dcfce7;--no:#b91c1c;--nob:#fee2e2;--bd:#e5d5cb;--code:#f1f3f8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--card:#1e222d;--tx:#eef1f8;--mut:#9aa3b8;--ac:#fb923c;--ok:#4ade80;--okb:#12301d;--no:#f87171;--nob:#3b1717;--bd:#343a4b;--code:#12141b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161d;--card:#1e222d;--tx:#eef1f8;--mut:#9aa3b8;--ac:#fb923c;--ok:#4ade80;--okb:#12301d;--no:#f87171;--nob:#3b1717;--bd:#343a4b;--code:#12141b;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.6}
+main{max-width:640px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px;margin-bottom:12px}
+h1{margin:0 0 6px;font-size:26px;color:var(--ac)}
+.stats{display:flex;gap:8px;justify-content:space-between;font-size:14px;margin-bottom:10px}
+.stats span{background:var(--card);border:1px solid var(--bd);border-radius:999px;padding:4px 12px}
+.bar{height:8px;background:var(--bd);border-radius:9px;overflow:hidden;margin-bottom:12px}
+.bar i{display:block;height:100%;width:0;background:var(--ac);transition:width .3s}
+.tag{font-size:12px;color:var(--ac);font-weight:700}
+.q{font-size:18px;font-weight:700;margin:6px 0 10px}
+pre{direction:ltr;text-align:left;background:var(--code);border-radius:10px;padding:10px;overflow-x:auto;font-size:14px;margin:0 0 12px}
+code{direction:ltr;unicode-bidi:embed;font-family:Consolas,monospace}
+.opt{display:block;width:100%;text-align:right;background:var(--card);color:var(--tx);border:2px solid var(--bd);border-radius:12px;padding:12px 14px;margin:8px 0;font:inherit;font-size:16px;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--ac)}
+.opt.ok{background:var(--okb);border-color:var(--ok)}
+.opt.no{background:var(--nob);border-color:var(--no)}
+.opt:disabled{cursor:default}
+.fb{margin-top:10px;padding:10px 12px;border-radius:10px;font-size:15px}
+.fb.ok{background:var(--okb)}.fb.no{background:var(--nob)}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:12px;padding:12px 22px;font:inherit;font-size:16px;font-weight:700;cursor:pointer;margin-top:12px}
+.hide{display:none}.center{text-align:center}
+.big{font-size:56px;margin:0}
+:root{--bg:#fff1f8;--g2:#e8f4ff;--card:#fff;--tx:#2b1b4d;--mut:#7a6a99;--ac:#e11d74;--bd:#f3c4e0;--code:#f3ecff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1038;--g2:#0f2a40;--card:#2a1a4a;--tx:#fff3fb;--mut:#c9b6f0;--ac:#ff5fa8;--bd:#5b3d96;--code:#1f1238}}
+:root[data-theme="dark"]{--bg:#1c1038;--g2:#0f2a40;--card:#2a1a4a;--tx:#fff3fb;--mut:#c9b6f0;--ac:#ff5fa8;--bd:#5b3d96;--code:#1f1238}
+body{background:linear-gradient(160deg,var(--bg),var(--g2)) fixed;min-height:100vh}
+h1{background:linear-gradient(90deg,#ff3d8b,#8b5cf6,#06b6d4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{box-shadow:0 6px 18px rgba(139,92,246,.18);border-radius:20px}
+.bar i{background:linear-gradient(90deg,#ff3d8b,#f59e0b,#22c55e,#06b6d4)}
+.btn{background:linear-gradient(90deg,#ff3d8b,#8b5cf6);box-shadow:0 4px 12px rgba(255,61,139,.35)}
+.stats span:nth-child(1){background:#fff3b0;color:#5b4300;border-color:#facc15}
+.stats span:nth-child(2){background:#ffd9c2;color:#7a2a00;border-color:#fb923c}
+.stats span:nth-child(3){background:#ffd1e3;color:#8a0a3e;border-color:#f472b6}
+.stats span:nth-child(4){background:#cdeeff;color:#05476b;border-color:#38bdf8}
+.opt:nth-child(1){border-color:#f9a8d4}.opt:nth-child(2){border-color:#c4b5fd}.opt:nth-child(3){border-color:#7dd3fc}.opt:nth-child(4){border-color:#fde047}
+.opt.ok{border-color:var(--ok)}.opt.no{border-color:var(--no)}
+.nm{width:100%;padding:12px;border:2px solid var(--ac);border-radius:12px;font:inherit;font-size:17px;background:var(--card);color:var(--tx);text-align:center;margin:8px 0}
+.cert{border:6px double #e11d74;border-radius:18px;padding:18px;margin:12px 0;background:linear-gradient(135deg,#fff7c2,#ffd6ec 50%,#d9ccff);color:#3b1766;word-break:break-word}
+.cert h2{margin:4px 0;font-size:26px;color:#c0126b}
+.cn{font-size:30px;font-weight:800;color:#6d28d9;border-bottom:2px dashed #c0126b;display:inline-block;padding:0 14px;margin:6px 0}
+.hint{background:var(--code)}
+.btn2{background:var(--card);color:var(--tx);border:2px dashed var(--ac);border-radius:12px;padding:8px 16px;font:inherit;font-size:15px;cursor:pointer;margin:0 0 10px}
+</style>
+</head>
+<body>
+<main>
+<div id="start" class="card center">
+<h1>🎮 تحدي HTML</h1>
+<p>أسئلة بسيطة لتتعلم أساسيات HTML خطوة بخطوة، مناسبة لمن يبدأ لأول مرة. لديك 3 أرواح ❤️ — جاوب بسرعة لتجمع نقاطًا أكثر!</p>
+<div class="fb hint" style="text-align:right"><b>💡 تلميحات قبل البداية</b><br>• HTML لغة نكتب بها صفحات الويب.<br>• نكتب الوسوم بين علامتي < > مثل &lt;p&gt;، وأغلبها له وسم إغلاق مثل &lt;/p&gt;.<br>• الوسوم الأساسية: h1 للعنوان، p للفقرة، img للصورة، a للرابط.<br>• لكل سؤال زر «تلميح» يساعدك، لكنه يخصم 5 نقاط.</div>
+<p style="margin:8px 0 0"><b>اكتبي اسمك لتظهر في الشهادة في نهاية التحدي 🎓</b></p>
+<input id="nm" class="nm" maxlength="40" placeholder="اسم الطالبة">
+<button class="btn" onclick="startGame()">ابدأ اللعب</button>
+</div>
+
+<div id="game" class="hide">
+<div class="stats"><span id="sc">⭐ 0</span><span id="st">🔥 0</span><span id="lv">❤️❤️❤️</span><span id="tm">⏱ 20</span></div>
+<div class="bar"><i id="pg"></i></div>
+<div class="card">
+<div class="tag" id="lesson"></div>
+<div id="intro" class="fb hint hide" style="text-align:right;margin:0 0 12px"></div>
+<div class="q" id="qt"></div>
+<div id="code"></div>
+<button class="btn2" id="hb" onclick="showHint()">💡 تلميح (−5 نقاط)</button>
+<div id="hint" class="fb hint hide"></div>
+<div id="opts"></div>
+<div id="fb" class="fb hide"></div>
+<button class="btn hide" id="next" onclick="nextQ()">التالي ←</button>
+</div>
+</div>
+
+<div id="end" class="card center hide">
+<p class="big" id="emoji">🏆</p>
+<h1 id="etitle"></h1>
+<p id="esum"></p><div id="cert"></div>
+<button class="btn" onclick="startGame()">العب مرة أخرى</button>
+</div>
+</main>
+<script>
+var L2="الدرس الثاني: بنية المحتوى",L3="الدرس الثالث: إنشاء نموذج";
+var C2="&lt;h3&gt;Our Trip&lt;/h3&gt;\n&lt;ul&gt;\n  &lt;li&gt;Museum&lt;/li&gt;\n  &lt;li&gt;Park&lt;/li&gt;\n&lt;/ul&gt;\n&lt;img src=\"images/park.jpg\" alt=\"City park\" width=\"300\"&gt;";
+var C3="&lt;form action=\"https://www.example.com/join.php\"&gt;\n  &lt;p&gt;Email &lt;input type=\"email\" name=\"email\"&gt;&lt;/p&gt;\n  &lt;input type=\"submit\" value=\"Join\"&gt;\n&lt;/form&gt;";
+// first option is the correct one; options are shuffled at runtime
+var Q=[
+{l:L2,q:"ماذا يظهر في المتصفح عند تنفيذ هذا الكود؟",c:C2,o:["عنوان Our Trip وقائمة نقطية فيها Museum وPark، ثم صورة بعرض 300 بكسل","قائمة مرقمة ثم رابط","عنوان وصورة فقط بدون قائمة","نص City park فقط"],e:"الوسم ul ينشئ قائمة نقطية، والوسم img يعرض الصورة بعرض 300 بكسل."},
+{l:L2,q:"الوسم a والخاصية href تُستخدم من أجل:",o:["رابط ينقلنا إلى صفحة أخرى","فتح الصفحة في علامة تبويب جديدة","تحديد عرض الصورة بالبكسل","إعادة تشغيل الفيديو"],e:"المطابقة: رابط ينقلنا إلى صفحة أخرى ← الوسم a والخاصية href."},
+{l:L2,q:"أي خاصية تفتح الرابط في علامة تبويب جديدة؟",o:["target بالقيمة _blank","poster","loop","width"],e:"target=\"_blank\" يفتح الصفحة في علامة تبويب جديدة."},
+{l:L2,q:"أي سمة تجعل الفيديو يُعاد تشغيله بعد انتهائه؟",o:["السمة loop في الوسم video","السمة poster في الوسم video","السمة width في الوسم img","الخاصية target"],e:"السمة loop تعيد تشغيل الفيديو تلقائيًا."},
+{l:L2,q:"أي سمة تعرض صورة قبل تشغيل الفيديو؟",o:["السمة poster في الوسم video","السمة loop في الوسم video","السمة width في الوسم img","الوسم a والخاصية href"],e:"السمة poster تحدد الصورة التي تظهر قبل التشغيل."},
+{l:L2,q:"أي سمة تحدد عرض الصورة بالبكسل؟",o:["السمة width في الوسم img","السمة poster في الوسم video","السمة loop في الوسم video","الخاصية target بالقيمة _blank"],e:"width=\"300\" مثلًا يجعل عرض الصورة 300 بكسل."},
+{l:L2,q:"كتبنا في وسم الصورة المسار images/logo.png فأين يبحث المتصفح عن ملف الصورة؟",o:["في المجلد images داخل مجلد الصفحة","في مجلد الصفحة نفسه مباشرة","في مجلد أعلى بمستوى واحد","في موقع إلكتروني آخر"],e:"المسار النسبي images/logo.png يعني مجلد images داخل مجلد الصفحة."},
+{l:L2,q:"أنشأنا رابطًا نصه News، وقيمة الخاصية href فيه news.html، ثم ضغطناه. ماذا يحدث؟",o:["تُفتح الصفحة news.html","لا يحدث شيء لغياب الخاصية target","تظهر صورة اسمها news.html","يفتح تطبيق البريد الإلكتروني"],e:"غياب target لا يمنع الرابط؛ تُفتح الصفحة في النافذة نفسها."},
+{l:L2,q:"أي كود يضيف الصورة team.jpg من المجلد images مع وصف نصي Our team؟",o:["<img src=\"images/team.jpg\" alt=\"Our team\">","<img src=\"images/team.jpg\" alt=\"Our team\"></img>","<image href=\"team.jpg\">Our team</image>","<img>images/team.jpg</img>"],e:"الوسم img ليس له وسم إغلاق، والخاصيتان src وalt ضروريتان."},
+{l:L3,q:"ماذا يظهر في المتصفح عند تنفيذ هذا الكود؟",c:C3,o:["النص Email وبجواره مربع لكتابة البريد، ثم زر مكتوب عليه Join","زر Join فقط","مربع نص متعدد الأسطر","كلمة Email فقط بدون مربع"],e:"input من النوع email ينشئ مربعًا للبريد، وsubmit ينشئ زرًا يرسل البيانات إلى صفحة action."},
+{l:L3,q:"أي خيار يُنشئ حقلًا تكتب فيه نصًا؟",o:["type=\"email\"","type=\"submit\"","type=\"radio\"","كلها أزرار فقط"],e:"حقول النص: text وemail وpassword وtextarea. أما submit وradio فمن الأزرار (حسب إجابات الورقة)."},
+{l:L3,q:"أي وسم يُنشئ حقل نص متعدد الأسطر؟",o:["textarea","input type=\"password\"","input type=\"submit\"","legend"],e:"الوسم textarea ينشئ حقلًا نصيًا متعدد الأسطر."},
+{l:L3,q:"أي زر يرسل بيانات النموذج؟",o:["type=\"submit\"","type=\"text\"","type=\"password\"","textarea"],e:"type=\"submit\" ينشئ زر الإرسال، ونص الزر يأتي من value."},
+{l:L3,q:"صح أم خطأ: «مربع البحث الذي نكتب فيه كلمة ثم نضغط زر البحث مثال على النماذج في الصفحات الإلكترونية».",o:["صح","خطأ"],e:"عبارة صحيحة، فنماذج البحث والتسجيل أمثلة شائعة.",fix:1},
+{l:L3,q:"صح أم خطأ: «نكتب في السمة value الرابط الذي يرسل إليه النموذج بياناته».",o:["خطأ","صح"],e:"الرابط يُكتب في السمة action من الوسم form، أما value فتحدد النص الذي يظهر على زر الأمر.",fix:1},
+{l:L3,q:"صح أم خطأ: «نريد أن يظهر عنوان «بيانات الطالب» فوق مجموعة حقول، فنكتبه داخل الوسم legend».",o:["صح","خطأ"],e:"عبارة صحيحة، فالوسم legend يعرض عنوان مجموعة الحقول."},
+{l:L3,q:"صح أم خطأ: «يعرض حقل كلمة المرور من النوع password ما نكتبه فيه واضحًا للجميع».",o:["خطأ","صح"],e:"حقل password يخفي ما نكتبه فيه، ويُستخدم لكلمة المرور."},
+{l:L3,q:"أي كود ينشئ حقلًا نصيًا متعدد الأسطر يعرض النص الإرشادي Your message؟",o:["<textarea name=\"message\" placeholder=\"Your message\"></textarea>","<input type=\"text\" value=\"Your message\">","<textarea>Your message</textarea>","<input type=\"submit\" placeholder=\"Your message\">"],e:"textarea ينشئ حقلًا متعدد الأسطر، والسمة placeholder تعرض نصًا إرشاديًا داخل المربع."}
+];
+var idx,score,streak,lives,t,timer,order,done,hintUsed;
+var HINTS=["الوسم ul ينشئ قائمة نقطية، والوسم img يعرض صورة. عدّ العناصر داخل القائمة.","الوسم a هو وسم الرابط، والخاصية href تحمل عنوان الوجهة.","القيمة _blank تعني نافذة فارغة جديدة.","كلمة loop تعني حلقة، أي تكرار.","كلمة poster تعني ملصقًا أو غلافًا يظهر قبل العرض.","كلمة width تعني العرض، وتُكتب داخل وسم الصورة.","المسار لا يبدأ بـ ../ ولا برابط كامل، فهو نسبي من مجلد الصفحة.","الرابط يذهب إلى الوجهة المكتوبة في href، والخاصية target اختيارية.","الوسم img وسم فارغ لا وسم إغلاق له، ومصدر الصورة يُكتب في src.","انظر إلى نوع input وإلى قيمة value في الزر.","حقل النص نكتب فيه حروفًا، أما الأزرار فنضغطها.","textarea تعني منطقة نص كبيرة.","الزر الذي يرسل البيانات اسمه من الفعل submit أي يُرسل.","فكّر في مربع البحث في أي موقع: هل هو نموذج؟","أين نكتب وجهة إرسال النموذج؟ في السمة action من الوسم form.","الوسم legend يعطي عنوانًا لمجموعة الحقول.","الغرض من هذا الحقل حماية كلمة المرور من أعين الآخرين.","textarea له وسم إغلاق، والسمة placeholder تعرض نصًا إرشاديًا باهتًا."];
+var L="أساسيات HTML";
+Q=[
+{l:L,q:"ما وظيفة لغة HTML؟",o:["بناء صفحات الويب وتحديد محتواها","تصميم الصور والرسومات فقط","إجراء العمليات الحسابية","حماية الجهاز من الفيروسات"],e:"HTML هي لغة ترميز نص تشعبي نبني بها هيكل صفحة الويب."},
+{l:L,q:"ماذا نسمي الكلمات التي نكتبها بين علامتي < > مثل <p>؟",o:["وسوم (Tags)","ألوان","أرقام","صور"],e:"الوسم هو كلمة بين < > تخبر المتصفح كيف يعرض المحتوى."},
+{l:L,q:"أي وسم ينشئ عنوانًا كبيرًا في الصفحة؟",o:["<h1>","<p>","<img>","<br>"],e:"الوسوم من h1 إلى h6 للعناوين، وh1 هو الأكبر."},
+{l:L,q:"أي وسم ينشئ فقرة نصية؟",o:["<p>","<h1>","<ul>","<img>"],e:"الوسم p (paragraph) يعني فقرة."},
+{l:L,q:"أي وسم ننتقل به إلى سطر جديد؟",o:["<br>","<title>","<body>","<li>"],e:"الوسم br يبدأ سطرًا جديدًا، وليس له وسم إغلاق."},
+{l:L,q:"أي وسم نستخدمه لعرض صورة؟",o:["<img>","<a>","<p>","<ul>"],e:"الوسم img (image) يعرض الصورة."},
+{l:L,q:"أي وسم ننشئ به رابطًا ينقلنا إلى صفحة أخرى؟",o:["<a>","<img>","<h1>","<br>"],e:"الوسم a يُنشئ الرابط، والخاصية href تحمل عنوان الصفحة التي ننتقل إليها."},
+{l:L,q:"أين نكتب المحتوى الذي يراه الزائر في الصفحة؟",o:["داخل الوسم <body>","داخل الوسم <head>","خارج ملف HTML","داخل الوسم <title> فقط"],e:"كل ما يظهر في الصفحة يوضع داخل body."},
+{l:L,q:"أين يظهر النص المكتوب داخل الوسم <title>؟",o:["في علامة تبويب المتصفح","كعنوان كبير داخل الصفحة","في آخر الصفحة","لا يظهر أبدًا"],e:"title يحدد اسم الصفحة الذي يظهر في علامة التبويب."},
+{l:L,q:"أي وسم ينشئ قائمة نقطية؟",o:["<ul>","<ol>","<li>","<h1>"],e:"ul قائمة نقطية، وol قائمة مرقمة."},
+{l:L,q:"ما الوسم الذي نكتب به كل عنصر داخل القائمة؟",o:["<li>","<ul>","<p>","<img>"],e:"كل عنصر في القائمة يُكتب داخل li."},
+{l:L,q:"أي خاصية في الوسم img نكتب فيها مسار الصورة؟",o:["src","alt","href","width"],e:"src (source) تحدد مكان ملف الصورة."},
+{l:L,q:"ما فائدة الخاصية alt في وسم الصورة؟",o:["وصف نصي يظهر إذا لم تظهر الصورة","تكبير الصورة","تلوين الصورة","تحويل الصورة إلى رابط"],e:"alt تعرض وصفًا نصيًا بدل الصورة إن لم تظهر."},
+{l:L,q:"ماذا يظهر في المتصفح عند تنفيذ هذا الكود؟",c:"&lt;h1&gt;Hello&lt;/h1&gt;",o:["عنوان كبير مكتوب فيه Hello","فقرة صغيرة","صورة","رابط"],e:"h1 ينشئ عنوانًا كبيرًا يعرض النص بداخله."},
+{l:L,q:"أي وسم ننشئ به نموذجًا (form) لجمع بيانات الزائر؟",o:["<form>","<img>","<br>","<title>"],e:"الوسم form ينشئ نموذجًا نضع فيه الحقول والأزرار."},
+{l:L,q:"أي نوع نكتبه في input لإنشاء زر إرسال؟",o:["type=\"submit\"","type=\"text\"","type=\"password\"","type=\"email\""],e:"submit تعني يُرسل، وينشئ زرًا يرسل بيانات النموذج."},
+{l:L,q:"أي نوع input يُخفي ما يكتبه المستخدم، مثل كلمة المرور؟",o:["type=\"password\"","type=\"text\"","type=\"submit\"","type=\"email\""],e:"حقل password يعرض نقاطًا بدل الحروف."}
+];
+HINTS=["HTML تساعدنا على بناء الصفحات التي نراها على الإنترنت.","الوسم يُكتب بين علامتين: أصغر من وأكبر من.","الحرف h اختصار heading أي عنوان.","الحرف p اختصار paragraph أي فقرة.","br اختصار break أي فاصل بين الأسطر.","img اختصار image أي صورة.","a اختصار anchor أي مرساة تربطنا بصفحة أخرى.","body تعني جسم الصفحة، أي الجزء الذي نراه.","أنظر إلى أعلى المتصفح حيث اسم الصفحة.","ul اختصار unordered list أي قائمة غير مرتبة.","li اختصار list item أي عنصر قائمة.","src اختصار source أي مصدر الصورة.","alt اختصار alternative أي بديل نصي.","h1 هو وسم العنوان الكبير.","form تعني نموذج.","submit تعني يُرسل.","password تعني كلمة المرور، وهي سرية."];
+Q[0]={l:"مقدمة الكود",i:`<b>📘 اقرأ هذه المقدمة ثم أجب</b><pre style="background:var(--card)"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre><b>🔤 معنى الرموز:</b><br>• <code>&lt;</code> بداية الوسم، و<code>&gt;</code> نهايته.<br>• <code>&lt;p&gt;</code> وسم الفتح، و<code>&lt;/p&gt;</code> وسم الإغلاق، والعلامة <code>/</code> تعني «انتهى».<br>• النص بين وسم الفتح والإغلاق هو المحتوى الذي يظهر.<br>• <code>=</code> و<code>"..."</code> تستخدمان مع الخاصية مثل <code>src="a.jpg"</code>، فالقيمة تكون بين علامتي تنصيص.<br><b>🧠 الفرق بين head وbody:</b><br>• <code>head</code>: معلومات عن الصفحة لا تظهر داخلها، مثل title الذي يظهر في علامة التبويب.<br>• <code>body</code>: كل ما يراه الزائر من نصوص وصور وروابط.<br><b>✍️ كتابة نص أو فقرة:</b> اكتب العنوان داخل <code>&lt;h1&gt;</code> والفقرة داخل <code>&lt;p&gt;</code>، كلاهما داخل body.`,q:"ما الفرق بين head وbody؟",o:["head فيه معلومات عن الصفحة (مثل العنوان)، وbody فيه ما يراه الزائر","head فيه ما يراه الزائر، وbody فيه عنوان الصفحة فقط","لا فرق بينهما، نكتب أينما شئنا","head للصور فقط، وbody للنصوص فقط"],e:"head للمعلومات التي لا تظهر داخل الصفحة، وbody لكل ما يظهر للزائر (النصوص والفقرات والصور)."};
+HINTS[0]="اسم body يعني جسم الصفحة الذي نراه، وhead يعني رأسها وفيه معلوماتها.";
+function showHint(){var h=$("hint");h.textContent="💡 "+HINTS[order[idx]];h.className="fb hint";hintUsed=true;$("hb").classList.add("hide")}
+function sh(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var x=a[i];a[i]=a[j];a[j]=x}return a}
+function $(i){return document.getElementById(i)}
+function startGame(){var nv=$("nm").value.trim();if(!nv){$("nm").style.borderColor="#dc2626";$("nm").placeholder="من فضلك اكتبي اسمك أولًا";$("nm").focus();return}window.good=0;idx=0;score=0;streak=0;lives=3;order=[0].concat(sh(Q.map(function(_,i){return i}).slice(1)));
+$("start").classList.add("hide");$("end").classList.add("hide");$("game").classList.remove("hide");show()}
+function hud(){$("sc").textContent="⭐ "+score;$("st").textContent="🔥 "+streak;
+$("lv").textContent=lives>0?new Array(lives+1).join("❤️"):"💔";$("pg").style.width=(idx/Q.length*100)+"%"}
+function show(){var q=Q[order[idx]];done=false;hud();
+$("lesson").textContent=q.l+" — سؤال "+(idx+1)+" من "+Q.length;
+$("qt").textContent=q.q;var iv=$("intro");if(q.i){iv.innerHTML=q.i;iv.className="fb hint"}else{iv.className="fb hint hide"}
+$("code").innerHTML=q.c?"<pre><code>"+q.c+"</code></pre>":"";
+$("fb").className="fb hide";$("next").classList.add("hide");hintUsed=false;$("hb").classList.remove("hide");$("hint").className="fb hint hide";
+var box=$("opts");box.innerHTML="";
+var o=q.o.map(function(x,i){return {x:x,ok:i===0}});
+if(!q.fix)o=sh(o);
+else o=q.o.length==2?[{x:q.o[0],ok:q.o[0]=="صح"},{x:q.o[1],ok:q.o[1]=="صح"}]:o;
+// true/false: correct is whichever is the true statement
+if(q.fix){var truth=/^صح أم خطأ/.test(q.q)&&/value/.test(q.q)?"خطأ":(/password/.test(q.q)?"خطأ":"صح");
+o=q.o.map(function(x){return {x:x,ok:x===truth}})}
+o.forEach(function(it){var b=document.createElement("button");b.className="opt";
+if(/^</.test(it.x)){var c=document.createElement("code");c.textContent=it.x;b.appendChild(c)}
+else if(/^type=/.test(it.x)){var c2=document.createElement("code");c2.textContent=it.x;b.appendChild(c2)}
+else b.textContent=it.x;
+b.onclick=function(){answer(b,it.ok,box)};box.appendChild(b);b._ok=it.ok});
+t=q.i?90:20;$("tm").textContent="⏱ "+t;clearInterval(timer);
+timer=setInterval(function(){t--;$("tm").textContent="⏱ "+t;if(t<=0){clearInterval(timer);answer(null,false,box)}},1000)}
+function answer(btn,ok,box){if(done)return;done=true;clearInterval(timer);
+var q=Q[order[idx]];
+[].forEach.call(box.children,function(b){b.disabled=true;if(b._ok)b.classList.add("ok")});
+$("hb").classList.add("hide");$("hint").classList.add("hide");
+if(ok){window.good=(window.good||0)+1;streak++;score+=Math.max(0,10+Math.max(0,t)+Math.min(streak,5)*2-(hintUsed?5:0))}
+else{streak=0;lives--;if(btn)btn.classList.add("no")}
+var f=$("fb");f.className="fb "+(ok?"ok":"no");
+f.textContent=(ok?"✅ أحسنت! ":btn?"❌ إجابة خاطئة. ":"⏰ انتهى الوقت. ")+q.e;
+hud();var n=$("next");n.classList.remove("hide");
+n.textContent=(lives<=0||idx>=Q.length-1)?"عرض النتيجة":"التالي ←"}
+function nextQ(){idx++;if(lives<=0||idx>=Q.length){finish()}else show()}
+function cert(){var win=lives>0,n=Math.min(idx,Q.length);
+$("cert").innerHTML='<div class="cert"><div style="font-size:40px">🌟🎓🌟</div><h2>'+(win?'شهادة تفوق':'شهادة مشاركة')+'</h2><div>تُمنح هذه الشهادة للطالبة</div><div class="cn" id="cn"></div><div>لإتمامها تحدي أساسيات HTML وإجابتها عن <b>'+(window.good||0)+'</b> من '+Q.length+' سؤالًا إجابة صحيحة</div><div style="margin-top:6px">⭐ النقاط: <b>'+score+'</b></div><div style="font-size:13px;margin-top:6px">'+new Date().toLocaleDateString("ar")+'</div></div><p style="font-size:13px">📸 التقطي صورة للشاشة لتحفظي الشهادة وترسليها لمعلمتك.</p>';
+$("cn").textContent=$("nm").value.trim()}
+function finish(){cert();clearInterval(timer);$("game").classList.add("hide");$("end").classList.remove("hide");
+var win=lives>0;$("emoji").textContent=win?"🏆":"💪";
+$("etitle").textContent=win?"أحسنت يا بطل!":"حاول مرة أخرى!";
+$("esum").textContent="نقاطك: "+score+" — أجبت عن "+Math.min(idx,Q.length)+" من "+Q.length+" سؤالًا.";}
+</script>
+</body>
+</html>
